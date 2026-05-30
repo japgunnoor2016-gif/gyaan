@@ -1,0 +1,405 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"><title>Gyaan Pargaas — Quiz Maker</title><style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--ac:#7c3aed;--a2:#9f67f5;--gd:#f0a500;--dp:#1a0a2e;--lt:#f8f6ff;--tx:#2d1b5e;--bd:#e8e0ff}
+body{font-family:-apple-system,'Segoe UI',sans-serif;background:var(--lt);color:var(--tx);min-height:100vh;overflow-x:hidden}
+.hd{background:linear-gradient(135deg,var(--dp),#3d0b8e,var(--ac));color:#fff;padding:12px 14px 10px;text-align:center;position:sticky;top:0;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,.32)}
+.hd .lr{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:2px}
+.hd .li{width:34px;height:34px;background:var(--gd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0}
+.hd h1{font-size:1.25rem;font-weight:800}.hd .tg{font-size:.67rem;color:var(--gd);font-style:italic}
+.nav{display:flex;background:#fff;border-bottom:2px solid var(--bd);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nav::-webkit-scrollbar{display:none}
+.nt{flex:1;min-width:52px;padding:9px 2px;text-align:center;font-size:.65rem;font-weight:600;color:#aaa;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;touch-action:manipulation}
+.nt.on{color:var(--ac);border-bottom-color:var(--ac);background:#faf8ff}
+.ni{display:block;font-size:.98rem;margin-bottom:1px}
+.scr{display:none}.scr.on{display:block}
+.ct{max-width:660px;margin:0 auto;padding:10px}
+.cd{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:0 2px 10px rgba(108,63,221,.07);border:1px solid var(--bd)}
+.ctt{font-size:.86rem;font-weight:700;color:var(--ac);margin-bottom:10px;display:flex;align-items:center;gap:5px}
+.fg{margin-bottom:8px}
+.fg label{display:block;font-size:.75rem;font-weight:600;margin-bottom:3px}
+.fg input,.fg textarea,.fg select{width:100%;padding:8px 10px;border:2px solid var(--bd);border-radius:8px;font-size:16px;font-family:inherit;background:#fff;-webkit-appearance:none;appearance:none;transition:border-color .2s}
+.fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--ac)}
+.fg textarea{resize:vertical;min-height:55px}
+.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath fill='%237c3aed' d='M5 7L0 0h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;padding-right:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:10px 16px;border:none;border-radius:9px;font-family:inherit;font-weight:700;font-size:.82rem;cursor:pointer;-webkit-appearance:none;appearance:none;touch-action:manipulation;transition:opacity .12s,transform .12s}
+.btn:active{opacity:.8;transform:scale(.97)}
+.bp{background:linear-gradient(135deg,var(--ac),var(--a2));color:#fff;box-shadow:0 3px 10px rgba(124,58,237,.22)}
+.bg{background:linear-gradient(135deg,var(--gd),#e67e22);color:#fff;box-shadow:0 3px 10px rgba(240,165,0,.22)}
+.bk{background:linear-gradient(135deg,#2d3748,#4a5568);color:#fff}
+.bo{background:transparent;border:2px solid var(--ac);color:var(--ac)}
+.br{background:#e53e3e;color:#fff}
+.bf{width:100%;display:flex}
+.bs{padding:6px 10px;font-size:.7rem;border-radius:7px}
+.hero{background:linear-gradient(135deg,var(--dp),#3d0b8e,var(--ac));border-radius:13px;padding:18px 14px;color:#fff;text-align:center;margin-bottom:11px}
+.hero h2{font-size:1.1rem;font-weight:800;margin-bottom:5px}.hero p{font-size:.76rem;opacity:.85;margin-bottom:13px;line-height:1.5}
+.sg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:11px}
+.sc{background:#fff;border-radius:9px;padding:9px 4px;text-align:center;border:1px solid var(--bd)}
+.sn{font-size:1.4rem;font-weight:800;color:var(--ac)}.sl{font-size:.62rem;color:#aaa;margin-top:1px}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:11px}
+.fc{background:#fff;border-radius:9px;padding:10px;border:1px solid var(--bd);cursor:pointer;touch-action:manipulation}
+.fc:active{transform:scale(.96);border-color:var(--ac)}
+.fi{font-size:1.25rem;margin-bottom:3px}.ft{font-size:.77rem;font-weight:700}.fd{font-size:.64rem;color:#aaa;margin-top:2px}
+.ib{background:#f3e8ff;border:1px solid #ddd6fe;border-radius:8px;padding:9px 11px;font-size:.74rem;color:#5b21b6;margin-bottom:9px;line-height:1.65}
+.ib strong{display:block;margin-bottom:2px;font-size:.77rem}
+.ib.gn{background:#f0fff4;border-color:#9ae6b4;color:#276749}
+.ib.yw{background:#fef3c7;border-color:#fcd34d;color:#92400e}
+.ib.bl{background:#ebf8ff;border-color:#90cdf4;color:#2a4365}
+.ib.rd{background:#fff5f5;border-color:#feb2b2;color:#c53030}
+.sb2{display:flex;align-items:center;margin-bottom:12px}
+.stp{display:flex;align-items:center;gap:3px;font-size:.68rem;font-weight:600;white-space:nowrap}
+.snu{width:20px;height:20px;border-radius:50%;background:var(--bd);color:#aaa;display:flex;align-items:center;justify-content:center;font-size:.63rem;font-weight:700;flex-shrink:0}
+.stp.dn .snu{background:#38a169;color:#fff}.stp.ac .snu{background:var(--ac);color:#fff}
+.sln{flex:1;height:2px;background:var(--bd);margin:0 3px}.sln.dn{background:#38a169}
+.qb{background:#faf8ff;border:1px solid var(--bd);border-radius:10px;padding:10px;margin-bottom:7px}
+.qbh{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.qbn{background:var(--ac);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0}
+.qbd{background:none;border:none;color:#ccc;font-size:.95rem;cursor:pointer;padding:3px 6px;touch-action:manipulation}
+.qbd:active{color:#e53e3e}
+.or{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.or input[type=radio]{width:16px;height:16px;accent-color:var(--ac);cursor:pointer;flex-shrink:0}
+.oi{flex:1;padding:6px 8px;border:1.5px solid var(--bd);border-radius:6px;font-size:15px;font-family:inherit;-webkit-appearance:none;appearance:none}
+.oi:focus{outline:none;border-color:var(--ac)}
+.or.cr .oi{border-color:#38a169;background:#f0fff4}
+.ctg{font-size:.61rem;color:#38a169;font-weight:700;white-space:nowrap}
+.ti{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:10px;margin-bottom:7px;display:flex;align-items:center;gap:8px}
+.tic{width:35px;height:35px;background:linear-gradient(135deg,var(--ac),var(--a2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.tif{flex:1;min-width:0}
+.tit{font-weight:700;font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.tim{font-size:.65rem;color:#aaa;display:flex;gap:7px;flex-wrap:wrap}
+.tia{display:flex;gap:4px;flex-shrink:0}
+.rt{width:100%;border-collapse:collapse;font-size:.76rem}
+.rt th{background:var(--ac);color:#fff;padding:6px 7px;text-align:left;font-weight:700}
+.rt td{padding:6px 7px;border-bottom:1px solid var(--bd);vertical-align:top}
+.rt tr:last-child td{border-bottom:none}
+.rb2{display:inline-block;padding:2px 6px;border-radius:6px;font-size:.66rem;font-weight:700}
+.sr{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd)}
+.sr:last-child{border-bottom:none}
+.slb{font-size:.8rem;font-weight:600}.sdb{font-size:.66rem;color:#aaa;margin-top:1px}
+.tgl{width:42px;height:22px;background:#ddd;border-radius:11px;position:relative;cursor:pointer;transition:.28s;flex-shrink:0;touch-action:manipulation}
+.tgl.on{background:var(--ac)}
+.tgl::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;background:#fff;border-radius:50%;transition:.28s;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.tgl.on::after{left:22px}
+.tst{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(110px);background:#1a0a2e;color:#fff;padding:8px 16px;border-radius:15px;font-size:.75rem;font-weight:600;z-index:9999;transition:.28s;pointer-events:none;max-width:84vw;text-align:center}
+.tst.on{transform:translateX(-50%) translateY(0)}
+.empty{text-align:center;padding:28px 12px;color:#ccc}
+.empty .ei{font-size:2.4rem;margin-bottom:6px}
+.step-card{border-left:4px solid var(--ac);padding:10px 12px;background:#faf8ff;border-radius:0 8px 8px 0;margin-bottom:8px;font-size:.78rem;line-height:1.6}
+.step-card strong{color:var(--ac)}
+</style></head><body><div class="hd"><div class="lr"><div class="li">🎓</div><h1>Gyaan Pargaas</h1></div><div class="tg">✨ Where Knowledge Creates Success ✨</div></div><div class="nav"><div class="nt on" id="tb-home" onclick="go('home')"><span class="ni">🏠</span>Home</div><div class="nt" id="tb-create" onclick="go('create')"><span class="ni">✏️</span>Create</div><div class="nt" id="tb-tests" onclick="go('tests')"><span class="ni">📋</span>Tests</div><div class="nt" id="tb-results" onclick="go('results')"><span class="ni">📊</span>Results</div><div class="nt" id="tb-share" onclick="go('share')"><span class="ni">📤</span>Share</div><div class="nt" id="tb-set" onclick="go('set')"><span class="ni">⚙️</span>Settings</div></div><div class="scr on" id="sc-home"><div class="ct"><div class="hero"><h2>Create &amp; Share Tests Instantly!</h2><p>Build quizzes in minutes. Students open on any phone — including iPhone!</p><button class="btn bg" style="max-width:195px;width:100%;margin:0 auto" onclick="go('create')">✏️ Create New Test</button></div><div class="sg"><div class="sc"><div class="sn" id="st-t">0</div><div class="sl">Tests</div></div><div class="sc"><div class="sn" id="st-q">0</div><div class="sl">Questions</div></div><div class="sc"><div class="sn" id="st-r">0</div><div class="sl">Results</div></div></div><div class="fg2"><div class="fc" onclick="go('create')"><div class="fi">📝</div><div class="ft">Build Quiz</div><div class="fd">Add MCQ questions</div></div><div class="fc" onclick="go('tests')"><div class="fi">📚</div><div class="ft">My Tests</div><div class="fd">View saved tests</div></div><div class="fc" onclick="go('results')"><div class="fi">📊</div><div class="ft">Results</div><div class="fd">Student scorecards</div></div><div class="fc" onclick="go('share')"><div class="fi">📤</div><div class="ft">Share</div><div class="fd">Send to students</div></div></div><div class="ib gn"><strong>💾 Tests auto-saved</strong>Saved in your browser — stay even after closing the tab.</div></div></div><div class="scr" id="sc-create"><div class="ct"><div class="sb2"><div class="stp ac" id="si1"><div class="snu">1</div><span>Info</span></div><div class="sln" id="sln1"></div><div class="stp" id="si2"><div class="snu">2</div><span>Questions</span></div><div class="sln" id="sln2"></div><div class="stp" id="si3"><div class="snu">3</div><span>Save</span></div></div><div id="cs1"><div class="cd"><div class="ctt">📋 Test Information</div><div class="fg"><label>Test Title *</label><input type="text" id="tt" placeholder="e.g. Chapter 5 Science Test"></div><div class="fg"><label>Subject</label><input type="text" id="ts" placeholder="e.g. Science, Maths, Punjabi"></div><div class="fg"><label>Class / Level</label><input type="text" id="tc" placeholder="e.g. Class 10, B.Ed"></div><div class="fg"><label>Instructions (optional)</label><textarea id="ti" placeholder="Read all questions carefully..."></textarea></div><button class="btn bp bf" onclick="toS2()">Next: Add Questions →</button></div></div><div id="cs2" style="display:none"><div class="cd"><div class="ctt">❓ Questions <span id="qbg" style="background:#f3e8ff;color:var(--ac);border-radius:7px;padding:2px 7px;font-size:.67rem;font-weight:700;margin-left:3px">0 added</span></div><div id="ql"></div><button class="btn bo bf" style="margin-bottom:8px" onclick="addQ()">➕ Add Question</button></div><div style="display:flex;gap:7px"><button class="btn bo" style="flex:1" onclick="toS1()">← Back</button><button class="btn bp" style="flex:2" onclick="toS3()">Preview →</button></div></div><div id="cs3" style="display:none"><div class="cd"><div class="ctt">✅ Preview &amp; Save</div><div id="pv"></div><div style="display:flex;gap:7px;margin-top:10px;flex-wrap:wrap"><button class="btn bo" style="flex:1;min-width:70px" onclick="toS2()">← Edit</button><button class="btn bp" style="flex:2;min-width:100px" onclick="saveTest()">💾 Save Test</button></div></div></div></div></div><div class="scr" id="sc-tests"><div class="ct"><div class="cd" style="padding:9px"><div id="tl"></div></div></div></div><div class="scr" id="sc-results"><div class="ct"><div class="cd"><div class="ctt">📊 Student Results</div><div class="fg" style="margin-bottom:7px"><label>Filter by Test</label><select id="rfil" onchange="renR()"><option value="">All Tests</option></select></div><div id="rtbl"></div></div><button class="btn br bf" onclick="clR()">🗑️ Clear All Results</button></div></div><div class="scr" id="sc-share"><div class="ct"><div class="cd"><div class="ctt">📤 Share Test with Students</div><div class="ib rd"><strong>🍎 Why iPhone doesn't work with WhatsApp files:</strong> iOS Safari blocks JavaScript in files opened from WhatsApp/email. The solutions below fix this permanently.</div><div class="fg"><label>Select Test</label><select id="shsel" onchange="onSS()"><option value="">-- Select a test --</option></select></div><div id="sh-empty" style="text-align:center;padding:18px;color:#bbb"><div style="font-size:2rem;margin-bottom:5px">📋</div><p style="font-size:.77rem">Create a test first!</p></div><div id="sh-panel" style="display:none"><div style="background:linear-gradient(135deg,var(--dp),#3d0b8e);border-radius:11px;padding:16px 14px;color:#fff;text-align:center;margin-bottom:10px"><div style="font-size:1.7rem;margin-bottom:6px">📤</div><div style="font-weight:700;font-size:.95rem;margin-bottom:3px" id="sh-name"></div><div style="font-size:.73rem;opacity:.8;margin-bottom:12px" id="sh-info"></div><button class="btn bg bf" onclick="doGen()" style="max-width:240px;margin:0 auto;padding:12px;font-size:.9rem">⚙️ Build Student Test File</button></div></div><div id="sh-result" style="display:none"><div class="ib gn"><strong>✅ Student test is ready! Choose the best option for your students:</strong></div><div class="cd" style="margin-bottom:8px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:28px;height:28px;background:var(--ac);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0">1</div><div style="font-weight:700;font-size:.85rem">🔗 Open in New Tab — <span style="color:#38a169">Best for Android &amp; Desktop</span></div></div><div style="font-size:.75rem;color:#666;margin-bottom:9px;line-height:1.6">Opens the test in a new browser tab instantly. Student takes the test right there.</div><button class="btn bp bf" onclick="doTab()">🔗 Open Student Test in New Tab</button></div><div class="cd" style="margin-bottom:8px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:28px;height:28px;background:var(--gd);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0">2</div><div style="font-weight:700;font-size:.85rem">📥 Download File — <span style="color:var(--gd)">Send via WhatsApp</span></div></div><div style="font-size:.75rem;color:#666;margin-bottom:9px;line-height:1.6">Downloads a .html file. Send to students via WhatsApp, Email, or Telegram.</div><button class="btn bg bf" onclick="doDL()" style="margin-bottom:8px">⬇️ Download Student File (.html)</button><div class="ib yw" style="margin-bottom:0"><strong>🍎 iPhone students — exact steps to open:</strong></div><div class="step-card"><strong>Step 1:</strong> In WhatsApp: tap and <strong>hold</strong> the file</div><div class="step-card"><strong>Step 2:</strong> Tap <strong>Share</strong> from the menu that appears</div><div class="step-card"><strong>Step 3:</strong> Tap <strong>Copy to Safari</strong> — OR — <strong>Open in Chrome</strong></div><div class="step-card"><strong>Step 4:</strong> The test opens in the browser and works perfectly ✅</div></div><div class="cd"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:28px;height:28px;background:#2d3748;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0">3</div><div style="font-weight:700;font-size:.85rem">🚀 GitHub Pages — <span style="color:#2d3748">Permanent Link for All iPhones</span></div></div><div style="font-size:.75rem;color:#666;margin-bottom:9px;line-height:1.6">Host this app online for free. Students tap a link — test opens instantly on iPhone, Android, everything.</div><div class="step-card"><strong>Step 1:</strong> Go to <strong>github.com</strong> → sign up free</div><div class="step-card"><strong>Step 2:</strong> New repository → name it <strong>gyaan</strong> → Create</div><div class="step-card"><strong>Step 3:</strong> Upload files → upload this HTML file → rename to <strong>index.html</strong></div><div class="step-card"><strong>Step 4:</strong> Settings → Pages → Branch: main → Save</div><div class="step-card"><strong>Step 5:</strong> Your URL: <strong>https://yourname.github.io/gyaan/</strong></div><div class="step-card"><strong>Step 6:</strong> Send this URL on WhatsApp — student taps → test opens on iPhone ✅</div></div></div></div></div></div><div class="scr" id="sc-set"><div class="ct"><div class="cd"><div class="ctt">⚙️ Test Settings</div><div class="sr"><div><div class="slb">Show Explanations</div><div class="sdb">Show answer explanation after submit</div></div><div class="tgl  on" id="tg-explain" onclick="tog('explain')"></div></div><div class="sr"><div><div class="slb">Shuffle Questions</div><div class="sdb">Randomize question order</div></div><div class="tgl" id="tg-shuffle" onclick="tog('shuffle')"></div></div><div class="sr"><div><div class="slb">Shuffle Options</div><div class="sdb">Randomize answer options</div></div><div class="tgl" id="tg-shOpts" onclick="tog('shOpts')"></div></div></div><div class="cd"><div class="ctt">🗑️ Data</div><p style="font-size:.75rem;color:#aaa;margin-bottom:9px">Tests saved in browser localStorage.</p><div style="display:flex;gap:7px;flex-wrap:wrap"><button class="btn br" style="flex:1;min-width:110px" onclick="clAll()">🗑️ Delete All Tests</button><button class="btn br" style="flex:1;min-width:110px" onclick="clR()">🗑️ Clear Results</button></div></div><div class="cd" style="text-align:center;padding:14px"><div style="font-size:1.6rem;margin-bottom:4px">🎓</div><div style="font-weight:800;color:var(--ac)">Gyaan Pargaas</div><div style="font-size:.67rem;color:#aaa;font-style:italic;margin-top:3px">Where Knowledge Creates Success</div><div style="font-size:.61rem;color:#ccc;margin-top:4px">v9.0 — iPhone Fixed</div></div></div></div><div class="tst" id="tst">✅</div><script>var GP_CSS="*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}:root{--ac:#7c3aed;--gd:#f0a500;--dp:#1a0a2e;--lt:#f8f6ff;--tx:#2d1b5e}body{font-family:-apple-system,'Segoe UI',sans-serif;background:var(--lt);color:var(--tx);min-height:100vh}.hdr{background:linear-gradient(135deg,var(--dp),#3d0b8e,var(--ac));color:#fff;padding:14px 16px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 4px 16px rgba(0,0,0,.3)}.hdr h1{font-size:1.15rem;font-weight:800}.hdr .sub{font-size:.72rem;opacity:.82;margin-top:3px}.hdr .tag{font-size:.66rem;color:#f0a500;font-style:italic}.ibar{background:#fff;padding:8px 13px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:5px;border-bottom:2px solid #e8e0ff}.ii{font-size:.77rem;color:var(--ac);font-weight:600}.tmr{background:var(--ac);color:#fff;padding:3px 10px;border-radius:12px;font-weight:700;font-size:.82rem}.bx{max-width:680px;margin:0 auto;padding:11px}.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:0 2px 10px rgba(108,63,221,.08);border:1px solid #e8e0ff}.fg{margin-bottom:9px}.fg label{display:block;font-size:.77rem;font-weight:600;margin-bottom:3px}.fg input{width:100%;padding:10px 11px;border:2px solid #e8e0ff;border-radius:8px;font-size:16px;font-family:inherit;-webkit-appearance:none;appearance:none}.fg input:focus{outline:none;border-color:var(--ac)}.sbtn{width:100%;padding:12px;background:linear-gradient(135deg,var(--ac),#9f67f5);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;-webkit-appearance:none;appearance:none;touch-action:manipulation}.sbtn:active{opacity:.85}.qcard{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:0 2px 10px rgba(108,63,221,.08);border:1px solid #e8e0ff}.qh{display:flex;gap:9px;margin-bottom:10px}.qnum{background:var(--ac);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}.qtxt{font-size:.92rem;font-weight:600;line-height:1.5;flex:1}.opts{display:flex;flex-direction:column;gap:8px}.opt{display:flex;align-items:center;gap:10px;padding:11px 12px;border:2px solid #e8e0ff;border-radius:10px;cursor:pointer;background:var(--lt);touch-action:manipulation;min-height:48px;user-select:none;-webkit-user-select:none}.opt:active{background:#ede9ff}.opt.sel{border-color:var(--ac);background:#f3eeff}.opt.ok{border-color:#38a169;background:#f0fff4;pointer-events:none}.opt.no{border-color:#e53e3e;background:#fff5f5;pointer-events:none}.dot{width:20px;height:20px;border-radius:50%;border:2px solid #ccc;flex-shrink:0;min-width:20px;display:flex;align-items:center;justify-content:center;font-size:.55rem;transition:.12s}.opt.sel .dot{border-color:var(--ac);background:var(--ac)}.opt.sel .dot::after{content:'\\25CF';color:#fff;font-size:.4rem}.opt.ok .dot{border-color:#38a169;background:#38a169}.opt.ok .dot::after{content:'\\2713';color:#fff;font-weight:900;font-size:.65rem}.opt.no .dot{border-color:#e53e3e;background:#e53e3e}.opt.no .dot::after{content:'\\2717';color:#fff;font-weight:900;font-size:.65rem}.olbl{font-size:.88rem;line-height:1.4;flex:1}.exp{margin-top:9px;padding:8px 10px;background:#f0fff4;border-radius:7px;border-left:3px solid #38a169;font-size:.76rem;color:#276749;display:none;line-height:1.5}.subbtn{display:block;width:100%;margin:5px 0 15px;padding:13px;background:linear-gradient(135deg,#f0a500,#e67e22);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;-webkit-appearance:none;appearance:none;touch-action:manipulation}.subbtn:active{opacity:.85}.prog{height:4px;background:#e8e0ff;border-radius:2px;margin:5px 0}.pf{height:100%;background:linear-gradient(90deg,var(--ac),#f0a500);border-radius:2px;transition:width .3s}.res{display:none;background:#fff;border-radius:12px;padding:20px 15px;text-align:center;box-shadow:0 4px 15px rgba(108,63,221,.09);border:1px solid #e8e0ff}.rscore{font-size:2.4rem;font-weight:800;color:var(--ac)}.rfrac{color:#666;margin:4px 0 10px;font-size:.86rem}.rgrade{font-size:.95rem;font-weight:700;padding:5px 15px;border-radius:12px;display:inline-block;margin-bottom:12px}.rb{background:var(--lt);border-radius:9px;padding:10px;text-align:left;margin-top:9px}.rrow{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #e8e0ff;font-size:.79rem}.rrow:last-child{border-bottom:none}.pbtn{display:block;width:100%;padding:12px;background:linear-gradient(135deg,#2d3748,#4a5568);color:#fff;border:none;border-radius:10px;font-size:.91rem;font-weight:700;cursor:pointer;-webkit-appearance:none;appearance:none;touch-action:manipulation;margin-bottom:8px}.pbtn:active{opacity:.85}.rbtn{display:block;width:100%;padding:12px;background:linear-gradient(135deg,var(--ac),#9f67f5);color:#fff;border:none;border-radius:10px;font-size:.91rem;font-weight:700;cursor:pointer;-webkit-appearance:none;appearance:none;touch-action:manipulation}.rbtn:active{opacity:.85}#ta{display:none}@media print{.hdr,.ibar,.subbtn,.pbtn,.rbtn{display:none!important}.qcard,.res{box-shadow:none!important;border:1px solid #ccc!important;page-break-inside:avoid}body{background:#fff!important}}";
+var tests=[], results=[], curQs=[];
+var sett={explain:true,shuffle:false,shOpts:false};
+var _ph='', _pt='';
+
+(function(){
+  try{
+    var t=localStorage.getItem('gp_t');
+    var r=localStorage.getItem('gp_r');
+    var s=localStorage.getItem('gp_s');
+    if(t)tests=JSON.parse(t);
+    if(r)results=JSON.parse(r);
+    if(s)sett=Object.assign(sett,JSON.parse(s));
+  }catch(e){}
+  Object.keys(sett).forEach(function(k){var el=document.getElementById('tg-'+k);if(el)el.classList.toggle('on',sett[k]);});
+  updS();
+})();
+
+function sv(){
+  try{localStorage.setItem('gp_t',JSON.stringify(tests));localStorage.setItem('gp_r',JSON.stringify(results));localStorage.setItem('gp_s',JSON.stringify(sett));}catch(e){}
+}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function show(id,v){document.getElementById(id).style.display=v?'block':'none'}
+function toast(m){var t=document.getElementById('tst');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},3200);}
+function shuf(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var x=a[i];a[i]=a[j];a[j]=x;}return a;}
+
+function go(n){
+  document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on');});
+  document.getElementById('sc-'+n).classList.add('on');
+  document.querySelectorAll('.nt').forEach(function(t){t.classList.remove('on');});
+  document.getElementById('tb-'+n).classList.add('on');
+  if(n==='home')updS();
+  if(n==='tests')renT();
+  if(n==='results'){filRF();renR();}
+  if(n==='share')renSh();
+}
+function updS(){
+  document.getElementById('st-t').textContent=tests.length;
+  document.getElementById('st-q').textContent=tests.reduce(function(a,t){return a+(t.qs?t.qs.length:0);},0);
+  document.getElementById('st-r').textContent=results.length;
+}
+function markStep(n){
+  [1,2,3].forEach(function(i){
+    var s=document.getElementById('si'+i);s.classList.remove('ac','dn');
+    if(i<n)s.classList.add('dn');if(i===n)s.classList.add('ac');
+    var l=document.getElementById('sln'+i);if(l)l.classList.toggle('dn',i<n);
+  });
+}
+
+function toS2(){
+  if(!document.getElementById('tt').value.trim()){toast('\u26a0\ufe0f Enter a test title');return;}
+  show('cs1',false);show('cs2',true);show('cs3',false);markStep(2);
+  if(curQs.length===0)addQ();renQ();
+}
+function toS1(){show('cs1',true);show('cs2',false);markStep(1);}
+function addQ(){curQs.push({q:'',opts:['','','',''],correct:0,exp:''});renQ();}
+function delQ(i){if(curQs.length<=1){toast('\u26a0\ufe0f Need at least 1');return;}curQs.splice(i,1);renQ();}
+function setC(i,j){curQs[i].correct=j;renQ();}
+function renQ(){
+  var h='';
+  curQs.forEach(function(q,i){
+    h+='<div class="qb"><div class="qbh"><div style="display:flex;align-items:center;gap:5px"><div class="qbn">'+(i+1)+'</div>'
+      +'<span style="font-size:.72rem;color:#aaa;font-weight:600">Q'+(i+1)+'</span></div>'
+      +'<button class="qbd" onclick="delQ('+i+')">\U0001f5d1</button></div>'
+      +'<div class="fg" style="margin-bottom:6px"><textarea class="oi" style="width:100%;min-height:48px" '
+      +'placeholder="Question text..." oninput="curQs['+i+'].q=this.value" onchange="curQs['+i+'].q=this.value">'+esc(q.q)+'</textarea></div>'
+      +'<div style="font-size:.64rem;color:var(--ac);font-weight:700;margin-bottom:4px">\u25cf radio = correct answer</div>';
+    for(var j=0;j<4;j++){
+      var ic=q.correct===j;
+      h+='<div class="or'+(ic?' cr':'')+'">'
+        +'<input type="radio" name="cr'+i+'" value="'+j+'" '+(ic?'checked':'')+' onchange="setC('+i+','+j+')">'
+        +'<input class="oi" type="text" placeholder="Option '+(j+1)+'" value="'+esc(q.opts[j])+'" '
+        +'oninput="curQs['+i+'].opts['+j+']=this.value" onchange="curQs['+i+'].opts['+j+']=this.value">'
+        +(ic?'<span class="ctg">\u2713</span>':'')+'</div>';
+    }
+    h+='<input class="oi" type="text" style="width:100%;margin-top:5px" placeholder="Explanation (optional)" value="'+esc(q.exp)+'" '
+      +'oninput="curQs['+i+'].exp=this.value" onchange="curQs['+i+'].exp=this.value">'
+      +'</div>';
+  });
+  document.getElementById('ql').innerHTML=h;
+  document.getElementById('qbg').textContent=curQs.length+' added';
+}
+function toS3(){
+  var ok=true;
+  curQs.forEach(function(q,i){
+    if(!q.q.trim()){toast('\u26a0\ufe0f Q'+(i+1)+': enter question');ok=false;}
+    else if(q.opts.filter(function(o){return o.trim();}).length<2){toast('\u26a0\ufe0f Q'+(i+1)+': need 2+ options');ok=false;}
+    else if(!q.opts[q.correct]||!q.opts[q.correct].trim()){toast('\u26a0\ufe0f Q'+(i+1)+': correct option empty');ok=false;}
+  });
+  if(!ok)return;
+  show('cs2',false);show('cs3',true);markStep(3);
+  var title=document.getElementById('tt').value.trim();
+  var subj=document.getElementById('ts').value.trim();
+  var cls=document.getElementById('tc').value.trim();
+  var h='<div style="margin-bottom:9px"><div style="font-size:.9rem;font-weight:800;color:var(--ac)">'+esc(title)+'</div>';
+  if(subj)h+='<span style="background:#f3e8ff;color:var(--ac);border-radius:6px;padding:1px 6px;font-size:.65rem;font-weight:700;margin-right:3px">'+esc(subj)+'</span>';
+  if(cls) h+='<span style="background:#fef3c7;color:#92400e;border-radius:6px;padding:1px 6px;font-size:.65rem;font-weight:700">'+esc(cls)+'</span>';
+  h+='</div><div style="font-size:.74rem;color:#aaa;margin-bottom:9px">'+curQs.length+' questions</div>';
+  curQs.forEach(function(q,i){
+    h+='<div style="margin-bottom:7px;padding:7px;background:#faf8ff;border-radius:7px;border:1px solid var(--bd)">'
+      +'<div style="font-weight:700;font-size:.77rem;margin-bottom:4px">'+(i+1)+'. '+esc(q.q)+'</div>';
+    q.opts.forEach(function(o,j){
+      if(!o.trim())return;
+      var c=j===q.correct;
+      h+='<div style="font-size:.73rem;padding:1px 5px;border-radius:3px;margin-bottom:2px;'
+        +(c?'background:#f0fff4;color:#38a169;font-weight:700':'color:#666')+'">'
+        +(c?'\u2705':'\u25cb')+' '+esc(o)+'</div>';
+    });
+    h+='</div>';
+  });
+  document.getElementById('pv').innerHTML=h;
+}
+function saveTest(){
+  var t={id:Date.now(),title:document.getElementById('tt').value.trim(),subject:document.getElementById('ts').value.trim(),classInfo:document.getElementById('tc').value.trim(),instr:document.getElementById('ti').value.trim(),qs:JSON.parse(JSON.stringify(curQs)),created:new Date().toLocaleDateString()};
+  tests.push(t);sv();
+  toast('\u2705 Test saved! '+curQs.length+' questions');
+  ['tt','ts','tc','ti'].forEach(function(id){document.getElementById(id).value='';});
+  curQs=[];show('cs1',true);show('cs2',false);show('cs3',false);markStep(1);go('tests');
+}
+function renT(){
+  var c=document.getElementById('tl');
+  if(!tests.length){c.innerHTML='<div class="empty"><div class="ei">\U0001f4cb</div><p>No tests yet.</p></div>';return;}
+  var h='<div style="font-weight:700;color:var(--ac);margin-bottom:8px;font-size:.82rem">\U0001f4da Tests ('+tests.length+')</div>';
+  tests.forEach(function(t,i){
+    var rc=results.filter(function(r){return r.testId===t.id;}).length;
+    h+='<div class="ti"><div class="tic">\U0001f4dd</div><div class="tif"><div class="tit">'+esc(t.title)+'</div>'
+      +'<div class="tim">'+(t.subject?'<span>'+esc(t.subject)+'</span>':'')+' <span>'+t.qs.length+' Qs</span>'
+      +'<span>'+rc+' results</span><span>'+t.created+'</span></div></div>'
+      +'<div class="tia"><button class="btn bg bs" onclick="qShare('+i+')">\U0001f4e4</button> '
+      +'<button class="btn br bs" onclick="delT('+i+')">\U0001f5d1</button></div></div>';
+  });
+  c.innerHTML=h;
+}
+function delT(i){if(!confirm('Delete "'+tests[i].title+'"?'))return;tests.splice(i,1);sv();renT();toast('\U0001f5d1 Deleted');}
+function qShare(i){go('share');setTimeout(function(){document.getElementById('shsel').value=String(i);onSS();},60);}
+function filRF(){
+  var sel=document.getElementById('rfil'),cur=sel.value;
+  sel.innerHTML='<option value="">All Tests</option>';
+  tests.forEach(function(t){sel.innerHTML+='<option value="'+t.id+'">'+esc(t.title)+'</option>';});
+  sel.value=cur;
+}
+function renR(){
+  var fid=document.getElementById('rfil').value;
+  var rows=fid?results.filter(function(r){return String(r.testId)===String(fid);}):results;
+  var c=document.getElementById('rtbl');
+  if(!rows.length){c.innerHTML='<div class="empty" style="padding:18px"><div class="ei">\U0001f4ca</div><p style="font-size:.77rem">No results yet.</p></div>';return;}
+  var h='<div style="overflow-x:auto"><table class="rt"><thead><tr><th>Student</th><th>Score</th><th>Grade</th><th>Test</th></tr></thead><tbody>';
+  rows.slice().reverse().forEach(function(r){
+    var g,col;
+    if(r.score>=90){g='A+';col='#38a169';}else if(r.score>=75){g='A';col='#3182ce';}
+    else if(r.score>=60){g='B';col='#d69e2e';}else if(r.score>=40){g='C';col='#e67e22';}
+    else{g='D';col='#e53e3e';}
+    h+='<tr><td><strong>'+esc(r.name)+(r.roll?' ('+esc(r.roll)+')':'')+'</strong>'+(r.cls?'<br><small style="color:#aaa">'+esc(r.cls)+'</small>':'')+'</td>'
+      +'<td><strong>'+r.score+'%</strong><br><small>'+r.correct+'/'+r.total+'</small></td>'
+      +'<td><span class="rb2" style="background:'+col+'22;color:'+col+'">'+g+'</span></td>'
+      +'<td style="font-size:.7rem">'+esc(r.testTitle)+'</td></tr>';
+  });
+  h+='</tbody></table></div>';
+  c.innerHTML=h;
+}
+function clR(){if(!confirm('Clear all results?'))return;results=[];sv();renR();updS();toast('\U0001f5d1 Cleared');}
+window.GP_result=function(d){results.push(d);sv();updS();toast('\U0001f4ca Result: '+d.name+' \u2014 '+d.score+'%');};
+
+function renSh(){
+  var sel=document.getElementById('shsel');
+  sel.innerHTML='<option value="">-- Select a test --</option>';
+  tests.forEach(function(t,i){sel.innerHTML+='<option value="'+i+'">'+esc(t.title)+'</option>';});
+  document.getElementById('sh-empty').style.display=tests.length?'none':'block';
+  document.getElementById('sh-panel').style.display='none';
+  document.getElementById('sh-result').style.display='none';
+}
+function onSS(){
+  var idx=document.getElementById('shsel').value;
+  if(idx===''){document.getElementById('sh-panel').style.display='none';document.getElementById('sh-result').style.display='none';return;}
+  var t=tests[parseInt(idx)];
+  document.getElementById('sh-name').textContent=t.title;
+  document.getElementById('sh-info').textContent=t.qs.length+' questions \u2022 ready';
+  document.getElementById('sh-panel').style.display='block';
+  document.getElementById('sh-result').style.display='none';
+}
+
+// ── THE CORE: build student HTML and show sharing choices ──────────────────
+function doGen(){
+  var idx=document.getElementById('shsel').value;
+  if(idx===''){toast('\u26a0\ufe0f Select a test first');return;}
+  var t=tests[parseInt(idx)];
+  var qs=JSON.parse(JSON.stringify(t.qs));
+  if(sett.shuffle)qs=shuf(qs);
+  var qsF=qs.map(function(q){
+    var opts=q.opts.filter(function(o){return o.trim();});
+    var ct=q.opts[q.correct]||'';
+    if(sett.shOpts)opts=shuf(opts.slice());
+    var ci=opts.indexOf(ct);
+    return {q:q.q,opts:opts,correct:ci>=0?ci:0,exp:sett.explain?(q.exp||''):''};
+  });
+  _ph=buildSH(t,qsF);
+  _pt=t.title;
+  document.getElementById('sh-result').style.display='block';
+  setTimeout(function(){document.getElementById('sh-result').scrollIntoView({behavior:'smooth',block:'start'});},80);
+}
+
+// ── OPTION 1: Open directly in new tab (best for iPhone when teacher shares screen or AirDrop) ──
+function doTab(){
+  if(!_ph){toast('\u26a0\ufe0f Click Generate first');return;}
+  var uri='data:text/html;charset=utf-8,'+encodeURIComponent(_ph);
+  var w=window.open(uri,'_blank');
+  if(w){toast('\u2705 Test opened in new tab!');}
+  else{doDL();toast('\u26a0\ufe0f Popup blocked \u2014 file downloaded instead');}
+}
+
+// ── OPTION 2: Download the HTML file ──────────────────────────────────────
+function doDL(){
+  if(!_ph){toast('\u26a0\ufe0f Click Generate first');return;}
+  try{
+    var b=new Blob([_ph],{type:'text/html;charset=utf-8'});
+    var u=URL.createObjectURL(b);
+    var a=document.createElement('a');
+    a.href=u;a.download=(_pt||'test').replace(/[^a-z0-9]/gi,'_')+'_test.html';
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(u);},2000);
+    toast('\U0001f4e5 File downloaded!');
+  }catch(e){doTab();}
+}
+
+// ── BUILD STUDENT HTML (pure JS string concat) ────────────────────────────
+function buildSH(t,qsF){
+  var safe=function(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+  var sub=safe(t.subject||'')+(t.classInfo?' | '+safe(t.classInfo):'');
+  var qj=JSON.stringify(qsF);
+  var tid=String(t.id||0);
+  var ttj=JSON.stringify(t.title||'');
+  var css=GP_CSS;
+  var js=[
+    'var Q='+qj+';var _tid='+tid+',_ttl='+ttj+';var st,ti,ans={},sd={};',
+    'function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}',
+    'function startT(){var n=document.getElementById("sn").value.trim();if(!n){alert("Enter your name!");return;}',
+    'sd={name:n,roll:document.getElementById("rn").value.trim(),cls:document.getElementById("ci").value.trim()};',
+    'document.getElementById("sf").style.display="none";document.getElementById("ta").style.display="block";',
+    'document.getElementById("ib").style.display="flex";document.getElementById("qcnt").textContent=Q.length;renderQ();startTimer();}',
+    'function renderQ(){var h="";Q.forEach(function(q,i){',
+    'h+=\'<div class="qcard"><div class="qh"><div class="qnum">\'+(i+1)+\'</div><div class="qtxt">\'+esc(q.q)+\'</div></div><div class="opts">\';',
+    'q.opts.forEach(function(o,j){h+=\'<div class="opt" id="op\'+i+\'_\'+j+\'" onclick="pick(\'+i+\',\'+j+\')"><div class="dot"></div><div class="olbl">\'+esc(o)+\'</div></div>\';});',
+    'h+="</div>";if(q.exp)h+=\'<div class="exp" id="ex\'+i+\'">&#128161; \'+esc(q.exp)+"</div>";h+="</div>";});',
+    'document.getElementById("qc").innerHTML=h;}',
+    'function pick(i,j){ans[i]=j;for(var k=0;k<Q[i].opts.length;k++){var e=document.getElementById("op"+i+"_"+k);if(e)e.className="opt"+(k===j?" sel":"");}',
+    'var a=Object.keys(ans).length;document.getElementById("ac").textContent=a;document.getElementById("pf").style.width=(a/Q.length*100)+"%";}',
+    'function startTimer(){st=Date.now();ti=setInterval(function(){var e=Math.floor((Date.now()-st)/1000),m=Math.floor(e/60),s=e%60;',
+    'document.getElementById("td").textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;},1000);}',
+    'function submitT(){var un=Q.length-Object.keys(ans).length;if(un>0&&!confirm(un+" unanswered. Submit anyway?"))return;',
+    'clearInterval(ti);var el=Math.floor((Date.now()-st)/1000),ok=0,wr=0,sk=0;',
+    'Q.forEach(function(q,i){var ch=ans[i];if(ch===undefined){sk++;return;}',
+    'var lc=document.getElementById("op"+i+"_"+ch);var lk=document.getElementById("op"+i+"_"+q.correct);',
+    'if(ch===q.correct){ok++;if(lc)lc.className="opt ok";}else{wr++;if(lc)lc.className="opt no";if(lk)lk.className="opt ok";}',
+    'var ex=document.getElementById("ex"+i);if(ex)ex.style.display="block";});',
+    'var p=Math.round(ok/Q.length*100);document.getElementById("ta").style.display="none";',
+    'var rs=document.getElementById("rs");rs.style.display="block";',
+    'var g,col,ic;',
+    'if(p>=90){g="A+ Excellent!";col="#38a169";ic="&#127942;"}',
+    'else if(p>=75){g="A Good";col="#3182ce";ic="&#11088;"}',
+    'else if(p>=60){g="B Average";col="#d69e2e";ic="&#128077;"}',
+    'else if(p>=40){g="C Needs Work";col="#e67e22";ic="&#128218;"}',
+    'else{g="D Keep Studying";col="#e53e3e";ic="&#128170;"}',
+    'var m2=Math.floor(el/60),s2=el%60,ts=(m2<10?"0":"")+m2+":"+(s2<10?"0":"")+s2;',
+    'rs.innerHTML=\'<div style="font-size:2.6rem;margin-bottom:8px">\'+ic+"</div>"',
+    '+\'<div class="rscore">\'+p+"%</div>"',
+    '+\'<div class="rfrac">\'+ok+" / "+Q.length+" correct</div>"',
+    '+\'<div class="rgrade" style="background:\'+col+"22;color:"+col+\'">\'+ g+"</div>"',
+    '+\'<div class="rb">\'',
+    '+\'<div class="rrow"><span>&#128100; Name</span><span>\'+esc(sd.name)+"</span></div>"',
+    '+(sd.roll?\'<div class="rrow"><span>&#128290; Roll</span><span>\'+esc(sd.roll)+"</span></div>":"")',
+    '+(sd.cls?\'<div class="rrow"><span>&#127979; Class</span><span>\'+esc(sd.cls)+"</span></div>":"")',
+    '+\'<div class="rrow"><span>&#9989; Correct</span><span style="color:#38a169;font-weight:700">\'+ok+"</span></div>"',
+    '+\'<div class="rrow"><span>&#10060; Wrong</span><span style="color:#e53e3e;font-weight:700">\'+wr+"</span></div>"',
+    '+\'<div class="rrow"><span>&#11036; Skipped</span><span>\'+sk+"</span></div>"',
+    '+\'<div class="rrow"><span>&#9201; Time</span><span>\'+ts+"</span></div>"',
+    '+"</div>"',
+    '+\'<div style="margin-top:14px">\'',
+    '+\'<button class="pbtn" onclick="window.print()">&#128424;&#65039; Print / Save as PDF</button>\'',
+    '+\'<button class="rbtn" onclick="retryT()">&#128260; Try Again</button>\'',
+    '+"</div>";',
+    'try{if(window.opener&&window.opener.GP_result)window.opener.GP_result({testId:_tid,testTitle:_ttl,name:sd.name,roll:sd.roll,cls:sd.cls,score:p,correct:ok,total:Q.length,ts:new Date().toLocaleString()});}catch(x){}',
+    'window.scrollTo(0,0);}',
+    'function retryT(){ans={};document.getElementById("rs").style.display="none";',
+    'document.getElementById("sf").style.display="block";document.getElementById("ta").style.display="none";',
+    'document.getElementById("ib").style.display="none";}'
+  ].join('\n');
+  var SO='<scri'+'pt>',SC='<'+'/scri'+'pt>';
+  return '<!DOCTYPE html><html lang="en"><head>'
+    +'<meta charset="UTF-8">'
+    +'<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">'
+    +'<meta name="apple-mobile-web-app-capable" content="yes">'
+    +'<title>'+safe(t.title||'Test')+' \u2014 Gyaan Pargaas</title>'
+    +'<style>'+css+'</style>'
+    +'</head><body>'
+    +'<div class="hdr"><h1>\U0001f393 '+safe(t.title||'')+'</h1>'
+    +'<div class="sub">'+sub+'</div>'
+    +'<div class="tag">\u2728 Gyaan Pargaas \u2014 Where Knowledge Creates Success</div></div>'
+    +'<div class="ibar" id="ib" style="display:none">'
+    +'<div class="ii">\U0001f4dd <span id="qcnt">0</span> Questions</div>'
+    +'<div class="ii">\u23f1 <span class="tmr" id="td">00:00</span></div>'
+    +'<div class="ii">\u2705 <span id="ac">0</span> done</div></div>'
+    +'<div class="bx">'
+    +'<div class="card" id="sf">'
+    +'<div style="font-size:.9rem;font-weight:700;color:var(--ac);margin-bottom:9px">\U0001f4cb Enter Your Details</div>'
+    +'<div class="fg"><label>Full Name *</label><input type="text" id="sn" placeholder="Enter your name" autocomplete="name"></div>'
+    +'<div class="fg"><label>Roll No. / ID</label><input type="text" id="rn" placeholder="Optional"></div>'
+    +'<div class="fg"><label>Class / Section</label><input type="text" id="ci" placeholder="e.g. 10th A"></div>'
+    +'<button class="sbtn" onclick="startT()">\U0001f680 Start Test</button></div>'
+    +'<div id="ta"><div class="prog"><div class="pf" id="pf" style="width:0"></div></div>'
+    +'<div id="qc"></div><button class="subbtn" onclick="submitT()">\U0001f4e4 Submit Test</button></div>'
+    +'<div class="res" id="rs"></div></div>'
+    +SO+js+SC
+    +'</body></html>';
+}
+
+function tog(k){sett[k]=!sett[k];document.getElementById('tg-'+k).classList.toggle('on',sett[k]);sv();}
+function clAll(){if(!confirm('Delete ALL tests?'))return;tests=[];sv();renT();toast('\U0001f5d1 Done');}
+</script></body></html>
